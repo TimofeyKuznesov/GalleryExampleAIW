@@ -60,7 +60,7 @@ onPress(){
     //console.log("Start Animated");
     Animated.timing(          // Uses easing functions
       this.state.fadeAnim,    // The value to drive
-      {toValue: 1,duration: 500}            // Configuration
+      {toValue: 1,duration: 5000}            // Configuration
   ).start(()=>{this.onStopAnimated()});                // Don't forget start!
 }
 onStopAnimated(){
@@ -133,7 +133,10 @@ measureView(event) {
                                 <View key={this.state.aIndex}>
                                 <Animated.View key={this.state.upImage}
                                     style={{
-                                    opacity: 1-this.state.fadeAnim,
+                                    opacity: this.state.fadeAnim.interpolate({
+                                      inputRange: [0, 1],
+                                      outputRange: [1, 0]  // 0 : 150, 0.5 : 75, 1 : 0
+                                    }),
                                     transform: [{
                                              translateY: this.state.fadeAnim.interpolate({
                                                inputRange: [0, 1],

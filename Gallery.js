@@ -61,57 +61,64 @@ onLayout(event) {
                     {view}
 
                 </View>
-                <View style={{zIndex :2,  alignItems:"stretch",flexDirection: "row"
-                }}>
-                    <View style={{flex:1,alignItems:"center",justifyContent: 'center',
-                            backgroundColor: variables.footerDefaultBg,
-                            borderColor: variables.btnDisabledBg,
-                            borderWidth: (this.state.viewNum===1)?variables.borderWidth * 2:0,
-                        }}
-                        //onClick={()=>{this.onSelectExample(1);}}
-                        onStartShouldSetResponder={(evt) => true}
-                        onMoveShouldSetResponderCapture={() => false}
-                        // onResponderRelease={() => {
-                        //     //console.log("onResponderRelease")
-                        // }}
-                        // onResponderReject={() => {
-                        //     //console.log("onResponderReject")
-                        // }}
-                        onResponderGrant={() => {
-                            //console.log("onResponderGrant");
-                            this.onSelectExample(1);
-                        }}
-
-                        >
-                        <Text  style={(this.state.viewNum===1)?activeBStyle:bStyle} >Swipe Left-Righ</Text>
-                    </View>
-
-                    <View style={{flex:1,alignItems:"center",justifyContent: 'center',
-                            backgroundColor: variables.footerDefaultBg,
-                            borderColor: variables.btnDisabledBg,
-                            borderWidth: (this.state.viewNum===2)?variables.borderWidth * 2:0,
-                        }}
-                        //onClick={()=>{this.onSelectExample(2);}}
-                        onStartShouldSetResponder={(evt) => true}
-                        onMoveShouldSetResponderCapture={() => false}
-                        // onResponderRelease={() => {
-                        //     //console.log("onResponderRelease")
-                        // }}
-                        // onResponderReject={() => {
-                        //     //console.log("onResponderReject")
-                        // }}
-                        onResponderGrant={() => {
-                            //console.log("onResponderGrant");
-                            this.onSelectExample(2)
-                        }}
-                        >
-                            <Text  style={(this.state.viewNum===2)?activeBStyle:bStyle} >Click it</Text>
-                    </View>
-                </View>
+                {false && this.genFooter()}
             </View>
         );
-    }
+
 }
 
+
+genFooter(){
+    return (
+        <View style={{zIndex :2,  alignItems:"stretch",flexDirection: "row"
+        }}>
+            <View style={{flex:1,alignItems:"center",justifyContent: 'center',
+                    backgroundColor: variables.footerDefaultBg,
+                    borderColor: variables.btnDisabledBg,
+                    borderWidth: (this.state.viewNum===1)?variables.borderWidth * 2:0,
+                }}
+                //onClick={()=>{this.onSelectExample(1);}}
+                onStartShouldSetResponder={(evt) => true}
+                onMoveShouldSetResponderCapture={() => false}
+                // onResponderRelease={() => {
+                //     //console.log("onResponderRelease")
+                // }}
+                // onResponderReject={() => {
+                //     //console.log("onResponderReject")
+                // }}
+                onResponderGrant={() => {
+                    //console.log("onResponderGrant");
+                    this.onSelectExample(1);
+                }}
+
+                >
+                <Text  style={(this.state.viewNum===1)?activeBStyle:bStyle} >Swipe Left-Righ</Text>
+            </View>
+
+            <View style={{flex:1,alignItems:"center",justifyContent: 'center',
+                    backgroundColor: variables.footerDefaultBg,
+                    borderColor: variables.btnDisabledBg,
+                    borderWidth: (this.state.viewNum===2)?variables.borderWidth * 2:0,
+                }}
+                //onClick={()=>{this.onSelectExample(2);}}
+                onStartShouldSetResponder={(evt) => true}
+                onMoveShouldSetResponderCapture={() => false}
+                // onResponderRelease={() => {
+                //     //console.log("onResponderRelease")
+                // }}
+                // onResponderReject={() => {
+                //     //console.log("onResponderReject")
+                // }}
+                onResponderGrant={() => {
+                    //console.log("onResponderGrant");
+                    this.onSelectExample(2)
+                }}
+                >
+                    <Text  style={(this.state.viewNum===2)?activeBStyle:bStyle} >Click it</Text>
+            </View>
+        </View>
+    )
+}
+}
 
 export default  Gallery;

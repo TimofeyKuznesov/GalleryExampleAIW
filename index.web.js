@@ -9,15 +9,15 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
-
 import Gallery from "./Gallery";
 
 export default class GalleryExampleAIW extends Component {
   render() {
-    return (
-      <Gallery/>
+      return (
+          <Gallery/>
     );
   }
 }
@@ -42,3 +42,7 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('GalleryExampleAIW', () => GalleryExampleAIW);
+AppRegistry.runApplication('GalleryExampleAIW', {
+  initialProps: {},
+  rootTag: document.getElementById('ReactApp')
+})

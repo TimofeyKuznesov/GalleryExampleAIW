@@ -99,10 +99,11 @@ measureView(event) {
         return (
             <View ref={c => this._root = c} style={{flex:1,position: 'relative', flexDirection: 'column', justifyContent: 'flex-end',alignItems:'stretch'}}
                 onLayout={(event) => this.measureView(event)}
-                {...this._panResponder.panHandlers}>
+                {...this._panResponder.panHandlers}
+                >
                     <View style={{flex:1 ,flexDirection: 'column'}}>
                                 <Animated.View
-
+                                    //{...this._panResponder.panHandlers}
                                     key={this.state.aIndex-1}
                                     style={{
                                         position: 'absolute',  top: 0,  right: 0,   left: 0,
@@ -117,7 +118,7 @@ measureView(event) {
                                 </Animated.View>
 
                                 <Animated.View
-
+                                    //{...this._panResponder.panHandlers}
                                      key={this.state.aIndex+1}
                                     style={{
                                         position: 'absolute',  top: 0,  right: 0,   left: 0,
@@ -131,7 +132,7 @@ measureView(event) {
                                     {this.props.renderItem(cards[this.state.downImage],()=>{this._blockSwipe=false;this.onPress()})}
                                 </Animated.View>
                                 <Animated.View
-                                
+                                    //{...this._panResponder.panHandlers}
                                      key={this.state.aIndex}
                                     style={{
                                     position: 'absolute',  top: 0,  right: 0,   left: 0,
@@ -190,9 +191,9 @@ measureView(event) {
                 this._gestureStartDx=0;
             },
 
-            onShouldBlockNativeResponder: () => {return false},
+            //onShouldBlockNativeResponder: () => {return false},
             onStartShouldSetPanResponder: () => {return true},
-            onMoveShouldSetPanResponder: () => {return true},
+            onMoveShouldSetPanResponder: () => {return this._swipeOn},
             // onMoveShouldSetPanResponderCapture: (evt, gestureState) => {
             //     return Math.abs(gestureState.dx) > 5;
             //     //return !this._blockSwipe;

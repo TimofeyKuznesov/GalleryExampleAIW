@@ -39,7 +39,7 @@ class Gallery extends Component {
     }
 
     onSelectExample(val){
-        console.log("onSelectExample ",val);
+        //console.log("onSelectExample ",val);
         this.setState({viewNum: val})
     }
 
@@ -66,11 +66,17 @@ onLayout(event) {
                             borderColor: variables.btnDisabledBg,
                             borderWidth: (this.state.viewNum===1)?variables.borderWidth * 2:0,
                         }}
+                        //onClick={()=>{this.onSelectExample(1);}}
                         onStartShouldSetResponder={(evt) => true}
-                        onMoveShouldSetResponderCapture={() => true}
-                        onResponderRelease={() => {console.log("onResponderRelease")}}
+                        onMoveShouldSetResponderCapture={() => false}
+                        // onResponderRelease={() => {
+                        //     //console.log("onResponderRelease")
+                        // }}
+                        // onResponderReject={() => {
+                        //     //console.log("onResponderReject")
+                        // }}
                         onResponderGrant={() => {
-                            console.log("onResponderGrant");
+                            //console.log("onResponderGrant");
                             this.onSelectExample(1);
                         }}
 
@@ -83,11 +89,17 @@ onLayout(event) {
                             borderColor: variables.btnDisabledBg,
                             borderWidth: (this.state.viewNum===2)?variables.borderWidth * 2:0,
                         }}
+                        //onClick={()=>{this.onSelectExample(2);}}
                         onStartShouldSetResponder={(evt) => true}
-                        onMoveShouldSetResponderCapture={() => true}
-                        onResponderRelease={() => {console.log("onResponderRelease");this.onSelectExample(2)}}
+                        onMoveShouldSetResponderCapture={() => false}
+                        // onResponderRelease={() => {
+                        //     //console.log("onResponderRelease")
+                        // }}
+                        // onResponderReject={() => {
+                        //     //console.log("onResponderReject")
+                        // }}
                         onResponderGrant={() => {
-                            console.log("onResponderGrant");
+                            //console.log("onResponderGrant");
                             this.onSelectExample(2)
                         }}
                         >

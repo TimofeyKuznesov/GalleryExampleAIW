@@ -26,34 +26,41 @@ const ciStyle ={
 flexDirection: 'row',
 alignItems: 'center',
 justifyContent: 'space-around',
-paddingTop:10
+padding:5
 }
 
 class Card extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            imgHeight:this.calcHeight()
+            //imgHeight:this.calcHeight(),
+            height: (props.rootState.width>props.rootState.height)?props.rootState.height-100 : props.rootState.width-100
         }
         this.measureView = this.measureView.bind(this);
         this.calcHeight = this.calcHeight.bind(this);
         console.log("create Card "+props.item.name);
     }
+    componentWillReceiveProps(props){
+        console.log("new props:",props);
+        this.setState({
+            height: (props.rootState.width>props.rootState.height)?props.rootState.height-100 : props.rootState.width-100
+        });
+    }
 
     measureView(event) {
-      console.log('event.nativeEvent.layout.width: ', event.nativeEvent.layout.width);
-      console.log('event.nativeEvent.layout.height: ', event.nativeEvent.layout.height);
-      var w = event.nativeEvent.layout.width;
-      var h = event.nativeEvent.layout.height;
-      if(this.state.imgHeight!==this.calcHeight())
-      this.setState({
-            imgHeight: this.calcHeight(),
-            //h: Dimensions.get('window').height,
-            //   x: event.nativeEvent.layout.x,
-            //   y: event.nativeEvent.layout.y,
-            //   width: event.nativeEvent.layout.width,
-            //   height: event.nativeEvent.layout.height
-          })
+    //   console.log('event.nativeEvent.layout.width: ', event.nativeEvent.layout.width);
+    //   console.log('event.nativeEvent.layout.height: ', event.nativeEvent.layout.height);
+    //   var w = event.nativeEvent.layout.width;
+    //   var h = event.nativeEvent.layout.height;
+    //   if(this.state.imgHeight!==this.calcHeight())
+    //   this.setState({
+    //         imgHeight: this.calcHeight(),
+    //         //h: Dimensions.get('window').height,
+    //         //   x: event.nativeEvent.layout.x,
+    //         //   y: event.nativeEvent.layout.y,
+    //         //   width: event.nativeEvent.layout.width,
+    //         //   height: event.nativeEvent.layout.height
+    //       })
       }
 
      calcHeight(){
@@ -74,7 +81,7 @@ class Card extends React.Component {
                 </View>
                 <View style={ciStyle}>
                     <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'contain', width: null, flex: 1,
-                        height: (this.props.rootState.width>this.props.rootState.height)?this.props.rootState.height-20 : this.props.rootState.width-20
+                        height: this.state.height
                     }} source={this.props.item.image} />
                 </View>
             </View>

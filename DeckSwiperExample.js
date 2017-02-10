@@ -37,7 +37,8 @@ const cards = [
 class DeckSwiperExample extends Component {
     render() {
         return (
-                    <DeckSwiper 
+                    <DeckSwiper
+                        rootState={this.props.rootState}
                         dataSource={cards}
                         renderItem={(item, onPress) =>
                             <Card item={item} rootState={this.props.rootState} title="Swipe Picture" onPress={onPress} />

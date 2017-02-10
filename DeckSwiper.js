@@ -45,27 +45,37 @@ class DeckSwiper extends React.Component {
             width:0,
         };
         this._blockSwipe=true;
+        this._vector=0;
         this.onPress = this.onPress.bind(this);
         this.onStopAnimated = this.onStopAnimated.bind(this);
         this.swipe = this.swipe.bind(this);
     }
+
     _resetState(){
 
     }
 
-onPress(){
+onPress(vector){
     if(this.blockOnPress)
         return;
+    var value = this.state.fadeAnim._value;
+    if(vector)
+        value=vector;
     this.blockOnPress=true;
-    //console.log("Start Animated");
+    console.log("Start Animated value:",value);
+
     Animated.timing(          // Uses easing functions
       this.state.fadeAnim,    // The value to drive
-      {toValue: (this.state.fadeAnim._value>0)?this.state.width:-this.state.width,duration: 500}            // Configuration
-  ).start(()=>{this.onStopAnimated()});                // Don't forget start!
+      {toValue: (value>0)?this.state.width:-this.state.width,duration: 500}            // Configuration
+  ).start(()=>{this.onStopAnimated(value)});                // Don't forget start!
 }
-onStopAnimated(){
+onStopAnimated(vector){
     this.blockOnPress=false;
-    if(this._reverse)
+    var reverse=this._reverse;
+    if(vector)
+        reverse= (vector<0)? false : true;
+    console.log("!!!!!!!",vector,reverse);
+    if(reverse)
     this.setState( {
         aIndex: this.state.aIndex-1,
         fadeAnim: new Animated.Value(0),
@@ -86,7 +96,7 @@ onStopAnimated(){
 }
 
 measureView(event) {
-  //console.log('event.nativeEvent.layout.height: ', event.nativeEvent.layout.height);
+  console.log('event.nativeEvent.layout.height: ', event.nativeEvent.layout.height);
   this.setState({
           x: event.nativeEvent.layout.x,
           y: event.nativeEvent.layout.y,
@@ -166,24 +176,24 @@ measureView(event) {
             onStartShouldSetResponder: (evt) => true,
             onMoveShouldSetResponderCapture: () => this._swipeOn,
             onResponderRelease: () => {
-                //console.log("onResponderRelease");
+                console.log("onResponderRelease");
                 this._swipeOn=true;
             },
             onResponderGrant: () => {
                 if(!this._swipeOn)
                     return false;
-                //console.log("onResponderGrant");
+                console.log("onResponderGrant");
             },
             onResponderMove: (event) => {
-                //console.log("onResponderMove");
+                console.log("onResponderMove");
             },
             onPanResponderStart: (event,gestureState) => {
-             //console.log("onPanResponderStart");
+             console.log("onPanResponderStart");
              this._swipeOn=true
              this._gestureStartDx=gestureState.dx;
             },
             onPanResponderEnd: () => {
-                //console.log("onPanResponderEnd");
+                console.log("onPanResponderEnd");
                 this._swipeOn=false;
                 this._gestureStartDx=0;
             },
@@ -192,22 +202,27 @@ measureView(event) {
             onStartShouldSetPanResponder: () => {return true},
             onMoveShouldSetPanResponder: () => {return this._swipeOn},
             // onMoveShouldSetPanResponderCapture: (evt, gestureState) => {
+            //     console.log("onMoveShouldSetPanResponderCapture");
             //     return Math.abs(gestureState.dx) > 5;
             //     //return !this._blockSwipe;
             // },
             //
             // onStartShouldSetResponder: (evt) => true,
             // onMoveShouldSetResponderCapture: () => false,
-            // onResponderRelease: () => {//console.log("onResponderRelease");},
-            // onResponderGrant: () => {//console.log("onResponderGrant");},
+            // onResponderRelease: () => {console.log("onResponderRelease");},
+            // onResponderGrant: () => {console.log("onResponderGrant");},
             ////
 
 
             onPanResponderGrant: (e, gestureState) => {
-                //console.log("onPanResponderGrant");
+                console.log("onPanResponderGrant:",gestureState.x0);
+                if(this.props.rootState.width/2>gestureState.x0)
+                    this._vector=-1
+                else
+                    this._vector=1
                 //this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
                 //this.state.pan.setValue({x: 0, y: 0});
-                // this.state.pan.addListener((pVal)=>{//console.log("11111:"+pVal);});
+                // this.state.pan.addListener((pVal)=>{console.log("11111:"+pVal);});
             },
 
 
@@ -215,7 +230,7 @@ measureView(event) {
                 if(!this._swipeOn)
                     return;
                 var dx=gestureState.dx-this._gestureStartDx
-                //console.log("onPanResponderMove ",gestureState.dx," ",this._gestureStartDx," ",dx);
+                console.log("onPanResponderMove ",gestureState.dx," ",this._gestureStartDx," ",dx);
 
                 let val = dx;//*.0013//Math.abs((gestureState.dx*.0013));
                 if(val>0)
@@ -223,7 +238,7 @@ measureView(event) {
                 else
                     this._reverse=false
                 //let opa = Math.abs((gestureState.dx*.0022));
-                ////console.log("val:"+val);
+                //console.log("val:"+val);
                 if (val>0.2) {
                     val = 0.2;
                 }
@@ -243,8 +258,8 @@ measureView(event) {
                 //])(e, gestureState)
             },
 
-            onPanResponderRelease: (e, {vx, vy}) => {
-                //console.log("onPanResponderRelease");
+            onPanResponderRelease: (e, {vx, vy,x0,y}) => {
+                console.log("onPanResponderRelease");
                 // this._blockSwipe=true;
                 // if(this.props.onSwiping)
                 //   this.props.onSwiping(null);
@@ -257,8 +272,12 @@ measureView(event) {
                 // }
 
                 //if (Math.abs(this.state.pan.x._value) > SWIPE_THRESHOLD) {
-                ////console.log("this.state.fadeAnim: "+this.state.fadeAnim._value);
-                    if (Math.abs(this.state.fadeAnim._value/this.state.width) >= 0.2) {
+                //console.log("this.state.fadeAnim: "+this.state.fadeAnim._value);
+                if(this._vector && Math.abs(this.state.fadeAnim._value/this.state.width) < 0.02) {
+                    console.log("onPress event: ",this._vector);
+                    this.onPress(this._vector)
+                }
+                else if (Math.abs(this.state.fadeAnim._value/this.state.width) >= 0.2) {
                     this.onPress()
                     // Animated.timing(
                     //     this.state.fadeAnim,

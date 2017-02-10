@@ -60,7 +60,7 @@ onPress(){
     //console.log("Start Animated");
     Animated.timing(          // Uses easing functions
       this.state.fadeAnim,    // The value to drive
-      {toValue: 1,duration: 5000}            // Configuration
+      {toValue: 1,duration: 500}            // Configuration
   ).start(()=>{this.onStopAnimated()});                // Don't forget start!
 }
 onStopAnimated(){

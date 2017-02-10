@@ -61,21 +61,38 @@ onLayout(event) {
                 </View>
                 <View style={{zIndex :2, flex:1, alignItems:"stretch",flexDirection: "row"
                 }}>
-                    <TouchableOpacity activeOpacity={0.7} style={{flex:1,alignItems:"center",justifyContent: 'center',
+                    <View style={{flex:1,alignItems:"center",justifyContent: 'center',
                             backgroundColor: variables.footerDefaultBg,
                             borderColor: variables.btnDisabledBg,
                             borderWidth: (this.state.viewNum===1)?variables.borderWidth * 2:0,
-                        }}  onPress={ () => {this.onSelectExample(1)} } >
-                        <Text  style={(this.state.viewNum===1)?activeBStyle:bStyle} >Swipe Left-Righ</Text>
-                    </TouchableOpacity>
+                        }}
+                        onStartShouldSetResponder={(evt) => true}
+                        onMoveShouldSetResponderCapture={() => true}
+                        onResponderRelease={() => {console.log("onResponderRelease")}}
+                        onResponderGrant={() => {
+                            console.log("onResponderGrant");
+                            this.onSelectExample(1);
+                        }}
 
-                    <TouchableOpacity activeOpacity={0.7} style={{flex:1,alignItems:"center",justifyContent: 'center',
+                        >
+                        <Text  style={(this.state.viewNum===1)?activeBStyle:bStyle} >Swipe Left-Righ</Text>
+                    </View>
+
+                    <View activeOpacity={0.7} style={{flex:1,alignItems:"center",justifyContent: 'center',
                             backgroundColor: variables.footerDefaultBg,
                             borderColor: variables.btnDisabledBg,
                             borderWidth: (this.state.viewNum===2)?variables.borderWidth * 2:0,
-                        }} onPress={ () => {this.onSelectExample(2)} } >
+                        }}
+                        onStartShouldSetResponder={(evt) => true}
+                        onMoveShouldSetResponderCapture={() => true}
+                        onResponderRelease={() => {console.log("onResponderRelease");this.onSelectExample(2)}}
+                        onResponderGrant={() => {
+                            console.log("onResponderGrant");
+                            this.onSelectExample(2)
+                        }}
+                        >
                             <Text  style={(this.state.viewNum===2)?activeBStyle:bStyle} >Click it</Text>
-                    </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );

@@ -107,7 +107,6 @@ measureView(event) {
                             <View style={{flex:0,position: 'relative', flexDirection: 'column'}}>
                                 <Animated.View key={this.state.upImage}
                                     style={{
-                                    position: 'absolute',  top: 0,  right: 0,   left: 0,
                                     opacity: 1-this.state.fadeAnim,
                                     transform: [{
                                              translateY: this.state.fadeAnim.interpolate({

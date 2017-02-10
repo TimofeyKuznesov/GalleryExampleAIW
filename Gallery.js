@@ -55,11 +55,13 @@ onLayout(event) {
         if(this.state.viewNum===1) view = <DeckSwiperExample rootState={this.state} />;
         if(this.state.viewNum===2) view = <ListDownExample rootState={this.state} />;
         return (
-            <View  style={{flex:1,alignItems: "stretch",flexDirection: "column"}} onLayout={this.onLayout}>
-                <View style={{flex:10,  alignItems: "stretch",justifyContent: 'center'}}>
+            <View  style={{flex:1,alignItems: "stretch",flexDirection: "column",justifyContent: 'space-between'}} onLayout={this.onLayout}>
+                <View style={{ flex:1, alignItems: "center",flexDirection: "row",justifyContent: 'center'}}>
+
                     {view}
+
                 </View>
-                <View style={{zIndex :2, flex:1, alignItems:"stretch",flexDirection: "row"
+                <View style={{zIndex :2,  alignItems:"stretch",flexDirection: "row"
                 }}>
                     <View style={{flex:1,alignItems:"center",justifyContent: 'center',
                             backgroundColor: variables.footerDefaultBg,
@@ -84,7 +86,7 @@ onLayout(event) {
                         <Text  style={(this.state.viewNum===1)?activeBStyle:bStyle} >Swipe Left-Righ</Text>
                     </View>
 
-                    <View activeOpacity={0.7} style={{flex:1,alignItems:"center",justifyContent: 'center',
+                    <View style={{flex:1,alignItems:"center",justifyContent: 'center',
                             backgroundColor: variables.footerDefaultBg,
                             borderColor: variables.btnDisabledBg,
                             borderWidth: (this.state.viewNum===2)?variables.borderWidth * 2:0,

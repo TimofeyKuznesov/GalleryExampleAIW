@@ -7,7 +7,7 @@ import variables from "./ext/variables"
 const cStyle ={
     marginVertical: 5,
     marginHorizontal: 2,
-    flex: 1,
+    //flex: 1,
     borderWidth: variables.borderWidth,
     borderRadius: 2,
     borderColor: variables.cardBorderColor,
@@ -22,7 +22,7 @@ const cStyle ={
 };
 
 const ciStyle ={
-flex: 1,
+//flex: 1,
 flexDirection: 'row',
 alignItems: 'center',
 justifyContent: 'space-around',
@@ -74,7 +74,7 @@ class Card extends React.Component {
                 </View>
                 <View style={ciStyle}>
                     <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'contain', width: null, flex: 1,
-                        height: (this.props.rootState.width>this.props.rootState.height)?this.props.rootState.height-100 : this.props.rootState.width-100
+                        height: (this.props.rootState.width>this.props.rootState.height)?this.props.rootState.height-20 : this.props.rootState.width-20
                     }} source={this.props.item.image} />
                 </View>
             </View>

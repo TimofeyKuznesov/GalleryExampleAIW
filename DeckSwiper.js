@@ -97,11 +97,10 @@ measureView(event) {
 
     render () {
         return (
-            <View ref={c => this._root = c} style={{flex:1,position: 'relative', flexDirection: 'column', justifyContent: 'flex-end',alignItems:'stretch'}}
+            <View ref={c => this._root = c} style={{flex:1, position: 'relative', flexDirection: 'column'}}
                 onLayout={(event) => this.measureView(event)}
                 {...this._panResponder.panHandlers}
                 >
-                    <View style={{flex:1 ,flexDirection: 'column'}}>
                                 <Animated.View
                                     //{...this._panResponder.panHandlers}
                                     key={this.state.aIndex-1}
@@ -135,7 +134,6 @@ measureView(event) {
                                     //{...this._panResponder.panHandlers}
                                      key={this.state.aIndex}
                                     style={{
-                                    position: 'absolute',  top: 0,  right: 0,   left: 0,
                                                 transform : [
                                                     {
                                                         translateX: this.state.fadeAnim.interpolate({
@@ -156,7 +154,6 @@ measureView(event) {
                                         }}>
                                     {this.props.renderItem(cards[this.state.upImage])}
                                 </Animated.View>
-                        </View>
                 </View>
         );
     }

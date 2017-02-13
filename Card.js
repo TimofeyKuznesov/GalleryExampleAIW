@@ -92,11 +92,7 @@ class Card extends React.Component {
         var item=this.props.item;
         return(
             <View key={"dv-"+item.name} style={cStyle} >
-                <View style={ciStyle}>
-                    <Thumbnail source={item.image} />
-                    <Text style={{marginRight: 20}}>     {item.text}</Text>
-                    <Text note>{this.props.title}</Text>
-                </View>
+
                 <View style={ciStyle}>
 
                     <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'cover', width: null, flex:1 ,
@@ -104,6 +100,11 @@ class Card extends React.Component {
                         height: this.state.height
                     }} source={this.props.item.image} />
 
+                </View>
+                <View style={ciStyle}>
+                    {/*- //<Thumbnail source={item.image} /> */}
+                    <Text style={{marginRight: 20}}>     {item.text}</Text>
+                    {/* <Text note>{this.props.title}</Text>*/}
                 </View>
             </View>
         )

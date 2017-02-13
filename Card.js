@@ -5,6 +5,7 @@ import { Image,View,Text,TouchableWithoutFeedback,Dimensions } from 'react-nativ
 import variables from "./ext/variables"
 
 const cStyle ={
+    alignItems: "stretch",
     marginVertical: 5,
     marginHorizontal: 2,
     //flex: 1,
@@ -23,6 +24,7 @@ const cStyle ={
 
 const ciStyle ={
 //flex: 1,
+alignItems: "stretch",
 flexDirection: 'row',
 alignItems: 'center',
 justifyContent: 'space-around',
@@ -80,8 +82,21 @@ class Card extends React.Component {
                     <Text note>{this.props.title}</Text>
                 </View>
                 <View style={ciStyle}>
+                    <View style={{
+                          flex:1,
+                          borderWidth: variables.borderWidth,
+                          borderWidth: 0,
+                          borderRadius: 5,
+                          borderColor: variables.cardDefaultBg,
+                          flexWrap: 'wrap',
+                          backgroundColor: variables.cardDefaultBg,
+                          overflow: 'hidden',
+                          alignItems: "stretch",
+                          flexDirection: 'row',
+                          //zIndex: 2
+                        }}>
                     <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'contain', width: null, flex: 1,
-                        //borderWidth: variables.borderWidth,
+                        borderWidth: variables.borderWidth,
                         borderWidth: 0,
                         borderRadius: 5,
                         borderColor: variables.cardDefaultBg,
@@ -89,6 +104,7 @@ class Card extends React.Component {
                         backgroundColor: variables.cardDefaultBg,
                         height: this.state.height
                     }} source={this.props.item.image} />
+                    </View>
                 </View>
             </View>
         )

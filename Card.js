@@ -6,14 +6,14 @@ import variables from "./ext/variables"
 
 const cStyle ={
     alignItems: "stretch",
-    marginVertical: 5,
-    marginHorizontal: 2,
+    //marginVertical: 5,
+    //marginHorizontal: 2,
     //flex: 1,
     // borderWidth: variables.borderWidth,
     // borderRadius: 2,
     //borderColor: variables.cardBorderColor,
     borderColor: variables.cardDefaultBg,
-    flexWrap: 'wrap',
+    //flexWrap: 'wrap',
     backgroundColor: variables.cardDefaultBg,
     // shadowColor: '#000',
     // shadowOffset: { width: 0, height: 2 },

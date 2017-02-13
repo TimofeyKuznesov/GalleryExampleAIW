@@ -55,7 +55,7 @@ onLayout(event) {
         if(this.state.viewNum===1) view = <DeckSwiperExample rootState={this.state} />;
         if(this.state.viewNum===2) view = <ListDownExample rootState={this.state} />;
         return (
-            <View  style={{flex:1,alignItems: "stretch",flexDirection: "column",justifyContent: 'space-between'}} onLayout={this.onLayout}>
+            <View  style={{flex:1,alignItems: "stretch",flexDirection: "column",justifyContent: 'space-between',backgroundColor: variables.cardDefaultBg,}} onLayout={this.onLayout}>
                 <View style={{ flex:1, alignItems: "center",flexDirection: "row",justifyContent: 'center'}}>
 
                     {view}

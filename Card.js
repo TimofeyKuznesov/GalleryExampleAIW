@@ -81,6 +81,12 @@ class Card extends React.Component {
                 </View>
                 <View style={ciStyle}>
                     <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'contain', width: null, flex: 1,
+                        //borderWidth: variables.borderWidth,
+                        borderWidth: 0,
+                        borderRadius: 5,
+                        borderColor: variables.cardDefaultBg,
+                        flexWrap: 'wrap',
+                        backgroundColor: variables.cardDefaultBg,
                         height: this.state.height
                     }} source={this.props.item.image} />
                 </View>

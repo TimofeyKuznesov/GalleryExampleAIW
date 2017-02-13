@@ -30,6 +30,21 @@ alignItems: 'center',
 justifyContent: 'space-around',
 padding:5
 }
+const ciStyleI ={
+//flex: 1,
+alignItems: "stretch",
+flexDirection: 'row',
+alignItems: 'center',
+justifyContent: 'space-around',
+padding:0,
+///
+borderWidth: variables.borderWidth,
+borderWidth: 10,
+borderRadius: 20,
+borderColor: variables.cardBorderColor,
+flexWrap: 'wrap',
+backgroundColor: variables.cardDefaultBg,
+}
 
 class Card extends React.Component {
     constructor(props){
@@ -82,29 +97,12 @@ class Card extends React.Component {
                     <Text note>{this.props.title}</Text>
                 </View>
                 <View style={ciStyle}>
-                    <View style={{
-                          flex:1,
-                          borderWidth: variables.borderWidth,
-                          borderWidth: 0,
-                          borderRadius: 5,
-                          borderColor: variables.cardDefaultBg,
-                          flexWrap: 'wrap',
-                          backgroundColor: variables.cardDefaultBg,
-                          overflow: 'hidden',
-                          alignItems: "stretch",
-                          flexDirection: 'row',
-                          //zIndex: 2
-                        }}>
-                    <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'contain', width: null, flex: 1,
-                        borderWidth: variables.borderWidth,
-                        borderWidth: 0,
+
+                    <Image key={"dvi"+this.props.item.name} style={{ resizeMode: 'cover', width: null, flex:1 ,
                         borderRadius: 5,
-                        borderColor: variables.cardDefaultBg,
-                        flexWrap: 'wrap',
-                        backgroundColor: variables.cardDefaultBg,
                         height: this.state.height
                     }} source={this.props.item.image} />
-                    </View>
+
                 </View>
             </View>
         )
